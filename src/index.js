@@ -47,6 +47,14 @@ connectDB()
 
 
 /* methods for connection of databse in the same file 
+//examples for connecting to mongo db method1 directly write in the main file 
+//which is index.js
+
+
+
+
+
+
 
 import express from "express"
 const app=express()
