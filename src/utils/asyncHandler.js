@@ -19,13 +19,7 @@ export {asyncHandler}
 
 
 
-
-
-
-
-
-
-
+//this is the another method using try and catch block to make the wrapper 
 
 //try catch using m2->
 // const asyncHandler=()=>{}
