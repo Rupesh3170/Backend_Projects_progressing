@@ -1,3 +1,10 @@
+// import express from "express";
+// const app = express();  // create the express application
+
+// instead we can write as 
+import {app} from './app.js'
+
+
 //require('dotenv').config({path:'./env'})    --it is also fine 
 import dotenv from "dotenv"
 
@@ -16,6 +23,7 @@ connectDB()
 .catch((err)=>{
     console.log("MONGO db connection failed!!!",err);
 })
+
 
 
 
