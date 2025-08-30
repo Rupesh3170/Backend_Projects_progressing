@@ -2,6 +2,7 @@ import {asyncHandler} from "../utils/asyncHandler.js"
 import {ApiError} from "../utils/ApiError.js"
 import {User} from "../models/user.model.js"
 import {uploadOnCloudinary} from "../utils/cloudinary.js"
+import { ApiResponse } from "../utils/ApiResponse.js"
 
 const registerUser=asyncHandler(async(req,res)=>{
 
@@ -59,9 +60,31 @@ const registerUser=asyncHandler(async(req,res)=>{
    if(!avatar){ //checking ki avatar gya ki nhi
 
     throw new ApiError(400,"Avatar file is required")
+
    }
 
+  const user=await  username.create({
+    fullName,
+    avatar:avatar.url,
+    coverImage:coverImage?.url||"",
+    email,
+    password,
+    username:username.toLowerCase
+   })
 
+
+
+   const createdUser=await User.findById(user._id).select(
+    "-password -refreshToken"
+   )
+if(!createdUser){
+    throw new Apierror(500,"something went wrong while regestring")
+}
+
+return res.status(201).json(
+
+    new ApiResponse(200,createdUser,"User registered sucessfully")
+)
 
 
    
@@ -72,4 +95,6 @@ const registerUser=asyncHandler(async(req,res)=>{
 
 
 
-export {registerUser}
+export {
+    registerUser,
+}
