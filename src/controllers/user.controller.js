@@ -6,6 +6,9 @@ import { ApiResponse } from "../utils/ApiResponse.js"
 
 const registerUser=asyncHandler(async(req,res)=>{
 
+
+    //steps:->
+
     //get user details from frontend
     //validation 
     //check if user already exist
@@ -85,10 +88,6 @@ return res.status(201).json(
 
     new ApiResponse(200,createdUser,"User registered sucessfully")
 )
-
-
-   
-
 
 
 })

@@ -1,6 +1,7 @@
 import mongoose ,{Schema} from "mongoose";
 
 import jwt from "jsonwebtoken"
+
 import bcrypt from "bcrypt"
 
 const userSchema=new Schema(
@@ -66,7 +67,7 @@ userSchema.pre("save",async function(next){
 
 })
 
-//for validating password
+//for validating password  
 
 userSchema.schema.methods.isPasswordCorrect=async function(password){
 
