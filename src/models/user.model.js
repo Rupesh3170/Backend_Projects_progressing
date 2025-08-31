@@ -69,7 +69,7 @@ userSchema.pre("save",async function(next){
 
 //for validating password  
 
-userSchema.schema.methods.isPasswordCorrect=async function(password){
+userSchema.methods.isPasswordCorrect=async function(password){
 
 
     return await bcrypt.compare(password,this.password)
@@ -78,7 +78,7 @@ userSchema.schema.methods.isPasswordCorrect=async function(password){
 
 
 //generating token
-userSchema.schema.methods.generateAccessToken= function(){
+userSchema.methods.generateAccessToken= function(){
 
     return jwt.sign(
         {
@@ -97,7 +97,7 @@ userSchema.schema.methods.generateAccessToken= function(){
 
 
 //generating refresh token
-userSchema.schema.methods.generateRefreshToken= function(){
+userSchema.methods.generateRefreshToken= function(){
 
     return jwt.sign(
         {
