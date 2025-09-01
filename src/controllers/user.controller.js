@@ -21,7 +21,7 @@ const registerUser=asyncHandler(async(req,res)=>{
 
 
 
-    const {fullName,email,username,password}=req.body
+    const {fullname,email,username,password}=req.body
     console.log("email: ",email);
 
     // if(fullName===""){
@@ -31,7 +31,7 @@ const registerUser=asyncHandler(async(req,res)=>{
     //professional method:->
 
     if(
-        [fullName,email,username,password].some((field)=>field?.trim==="")
+        [fullname,email,username,password].some((field)=>field?.trim()==="")
 
     )
     {
@@ -40,7 +40,7 @@ const registerUser=asyncHandler(async(req,res)=>{
     }
 
 
-    const existedUser=User.findOne({
+    const existedUser= await User.findOne({
         $or:[{username},{email}]
     })
 
@@ -50,7 +50,7 @@ const registerUser=asyncHandler(async(req,res)=>{
     }
 
    const avatarLocalPath= req.files?.avatar[0]?.path;
-   const coverImageLocalPath=registerUser.files?.coverImage[0]?.path;
+   const coverImageLocalPath=req.files?.coverImage[0]?.path;
 
    if(!avatarLocalPath){
     throw new ApiError(400,"Avatar file is required")
@@ -66,13 +66,13 @@ const registerUser=asyncHandler(async(req,res)=>{
 
    }
 
-  const user=await  username.create({
-    fullName,
+  const user=await  User.create({
+    fullname,
     avatar:avatar.url,
     coverImage:coverImage?.url||"",
     email,
     password,
-    username:username.toLowerCase
+    username:username.toLowerCase()
    })
 
 
@@ -81,7 +81,7 @@ const registerUser=asyncHandler(async(req,res)=>{
     "-password -refreshToken"
    )
 if(!createdUser){
-    throw new Apierror(500,"something went wrong while regestring")
+    throw new ApiError(500,"something went wrong while regestring")
 }
 
 return res.status(201).json(
