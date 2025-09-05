@@ -136,7 +136,7 @@ return res.status(201).json(
 
 const loginUser=asyncHandler(async(req,res)=>{
 
-    //steps:->
+    //steps:->  steps for login user creation
     // req body......
     //username or email 
     //find the user
