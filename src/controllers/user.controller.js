@@ -141,8 +141,10 @@ const loginUser=asyncHandler(async(req,res)=>{
     //username or email 
     //find the user
     //password check
-    //access token and refresh token generate and send to user
+    //access token and refresh token generate and send to user:->for this we create method
     //send cookie
+
+
 
     const {email,username,password}=req.body
 
